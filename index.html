@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and Sort</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="text" id="DisplayInput" placeholder="Enter student name">
+    <button onclick="enrollStudent()">test</button>
+
+    <h3>List of students</h3>
+    <div id="displayContainer">
+        <p id="displayList"></p>
+    </div>
+
+
+
+    <script>
+        const studentNames = [];
+
+        function enrollStudent() {
+            let nameInput =  document.getElementById("DisplayInput");
+            let DisplayName = nameInput.value;
+
+            if (DisplayName !== "") {
+                studentNames.push(DisplayName)
+
+                let sortedList = studentNames.toSorted();
+                document.getElementById("displayList").innerHTML = sortedList.join(", ")
+
+                nameInput.value = "";
+            } else {
+                alert("fucker put some names")
+            }
+        }
+        
+
+    </script>
+</body>
+</html>
