@@ -1,42 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search and Sort</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <body>
     <input type="text" id="DisplayInput" placeholder="Enter student name">
-    <button onclick="enrollStudent()">test</button>
+    <select name="gender" id="DisplayGender">
+        <option value="">select your gender</option> 
+        <option value="male">male</option>
+        <option value="female">female</option>
+    </select>
+    <button onclick="enrollStudent()">Enroll</button>
 
     <h3>List of students</h3>
     <div id="displayContainer">
-        <p id="displayList"></p>
-    </div>
-
-
+        <p id="displayListName"></p>
+        <p id="displayListGender"></p>
+     </div>
 
     <script>
         const studentNames = [];
+        const studentGender = [];
 
         function enrollStudent() {
-            let nameInput =  document.getElementById("DisplayInput");
-            let DisplayName = nameInput.value;
+            let nameInput = document.getElementById("DisplayInput");
+            let genderInput = document.getElementById("DisplayGender");
 
-            if (DisplayName !== "") {
-                studentNames.push(DisplayName)
+            if (nameInput && genderInput) {
+                let nameValue = nameInput.value;
+                let genderValue = genderInput.value;
 
-                let sortedList = studentNames.toSorted();
-                document.getElementById("displayList").innerHTML = sortedList.join(", ")
+                if (nameValue.trim() !== "" && genderValue !== "") {
+                    studentNames.push(nameValue);
+                    studentGender.push(genderValue);
 
-                nameInput.value = "";
-            } else {
-                alert("fucker put some names")
+                    let sortedNames = studentNames.toSorted();
+                    let sortedGenders = studentGender.toSorted();
+
+                    document.getElementById("displayListName").innerHTML = "Names: " + sortedNames.join(", ");
+                    document.getElementById("displayListGender").innerHTML = "Genders: " + sortedGenders.join(", ");
+
+                    nameInput.value = "";
+                    genderInput.value = ""; 
+                } else {
+                    alert("Please enter a name and select a gender.");
+                }
             }
         }
-        
-
     </script>
 </body>
-</html>
